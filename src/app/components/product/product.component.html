@@ -1,0 +1,9 @@
+<div *ngIf="item" class="flex flex-col md:flex-row gap-4 p-4 items-top justify-center relative">
+    <img width="450" height="450" [ngSrc]="item.images[0]" alt="image example">
+  <div class="py-6 max-w-sm">
+    <h2 class="font-semibold text-xl">{{ item.title }}</h2>
+    <p>Price: {{ item.price}} USD</p>
+    <p><strong>Description:</strong> {{ item.description }}</p>
+  </div>
+  <a routerLink="/" class="block absolute top-2 left-0 bg-blue-500 py-2 px-4 rounded-tr-md rounded-br-md text-white "><i class="fa-solid fa-circle-chevron-left mr-3 text-lg"></i> Go to Home</a>
+</div>

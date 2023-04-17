@@ -1,0 +1,11 @@
+<div class="absolute -top-2 -right-3 bg-red-500 rounded-lg text-sm text-white p-1" *ngIf="form.controls?.[fieldName]?.invalid && (form.controls?.[fieldName]?.dirty  || form.controls?.[fieldName]?.touched) ">
+  <div class="capitalize" *ngIf="form.controls?.[fieldName]?.errors?.['required']">
+  {{messages['required']}}
+  </div>
+  <div class="capitalize" *ngIf="form.controls?.[fieldName]?.errors?.['minlength']">
+  {{messages['minLength']}}
+  </div>
+  <div class="capitalize" *ngIf="form.controls?.[fieldName]?.errors?.['min']">
+    {{messages['min']}} {{form.get(fieldName)?.errors?.['min']?.['min'] | json}}
+  </div>
+</div>

@@ -1,0 +1,14 @@
+<article class="bg-slate-50 text-slate-800 drop-shadow-md grid place-content-center relative rounded-md transition-all duration-150 ease-in hover:scale-105" *ngIf="item">
+  <h1 class="text-center py-2 font-bold">
+    {{item.title}}
+  </h1>
+  <img class="w-full max-h-44 object-cover" width="300" height="250" ngSrc="{{item.images[0]}}" alt="example image">
+  <p class="line-clamp-3 m-3">
+     {{item.description}}
+    {{item.price}}
+  </p>
+  <div class="flex items-center justify-center gap-4 pb-4">
+    <a routerLink="/{{item.id}}" class="px-[18px] py-3 bg-cyan-300 border border-transparent cursor-pointer transition-all duration-300 hover:border-blue-500 text-md text-blue-700 rounded-md"><i class="fa-solid fa-pen-to-square"></i></a>
+    <a routerLink="products/{{item.id}}" class="px-4 py-3 bg-green-400 border border-transparent cursor-pointer transition-all duration-300 hover:border-green-600 text-md text-slate-800 rounded-md"><i class="fa-solid fa-eye"></i></a>
+  </div>
+</article>

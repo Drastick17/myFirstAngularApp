@@ -1,0 +1,93 @@
+<section class="w-full min-h-full grid place-content-center pt-16">
+  <form
+    class="w-full max-w-2xl drop-shadow-lg bg-slate-50 px-4 py-3 rounded-md grid grid-cols-2 gap-[24px]"
+    (ngSubmit)="onSubmit($event)"
+    [formGroup]="itemForm"
+  >
+    <div class="relative">
+      <label class="text-lg text-slate-900">
+        <label>Title</label>
+        <input
+          type="text"
+          placeholder="Your title"
+          formControlName="title"
+          name="title"
+          class="w-full max-w-full p-1 text-lg border border-slate-50"
+        />
+      </label>
+      <app-form-field-message
+        [form]="itemForm"
+        [fieldName]="'title'"
+      ></app-form-field-message>
+    </div>
+    <div class="relative">
+      <label>
+        <label class="text-lg text-slate-900">Description</label>
+        <input
+          type="text"
+          placeholder="This product is used to..."
+          formControlName="description"
+         class="w-full max-w-full p-1 text-lg rounded-md"
+        />
+      </label>
+      <app-form-field-message
+        [form]="itemForm"
+        [fieldName]="'description'"
+      ></app-form-field-message>
+    </div>
+    <div class="relative">
+      <label>
+        <label class="text-lg text-slate-900">Price</label>
+        <input
+          type="number"
+          placeholder="1.99"
+          formControlName="price"
+         class="w-full max-w-full p-1 text-lg rounded-md"
+        />
+      </label>
+      <app-form-field-message
+        [form]="itemForm"
+        [fieldName]="'price'"
+      ></app-form-field-message>
+    </div>
+    <div class="relative">
+      <label>
+        <label class="text-lg text-slate-900">Images</label>
+        <textarea
+          rows="3"
+          placeholder="https://link/to/yourimage"
+          formControlName="images"
+         class="w-full max-w-full p-1 text-lg rounded-md"
+        ></textarea>
+        <span class="text-sm text-slate-800">For more than one link use newline for each</span>
+      </label>
+      <app-form-field-message
+        [form]="itemForm"
+        [fieldName]="'images'"
+      ></app-form-field-message>
+    </div>
+    <div></div>
+    
+    <!-- Value: {{itemForm.get("images")?.value | json}} -->
+    <div class="relative">
+      <ng-container *ngIf="categories">
+        <select class="w-1/2 py-2" (change)="onChangeCategory($event)">
+
+          <option *ngFor="let category of categories" value="{{ category.id }}" [selected]="category.id === this.itemForm.get('categoryId')?.value">
+            {{ category.name }}
+          </option>
+        </select>
+      </ng-container>
+      <app-form-field-message
+        [form]="itemForm"
+        [fieldName]="'categoryId'"
+      ></app-form-field-message>
+    </div>
+    <div class="col-span-2 text-center">
+      <button class="mx-auto px-4 py-2 bg-blue-700 text-white rounded-md" type="submit" [disabled]="!itemForm.valid" [ngClass]="{'bg-blue-400 text-slate-100 cursor-default':!itemForm.valid}">Submit</button>
+    </div>
+    <div *ngIf="message?.message && message?.status" class="fixed text-lg min-w-[16rem] min-h-[20rem] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-gray-800 text-white rounded-lg shadow-md py-2 px-4 grid place-content-center">
+      {{message.message}}
+    </div>
+  </form>
+</section>
